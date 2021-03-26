@@ -4,24 +4,6 @@
     box-sizing: border-box;
 }
 
-#navbarNav li{
-    margin-right: 25px;
-    font-size: 15px;
-    font-family: 'EB Garamond', serif;
-}
-
-#navbarNav li a{
-    color: #82589F;
-    position: relative;
-    padding: 5px 10px;
-}
-
-#navbarNav li a:hover,
-#navbarNav li a:active{
-    color: #CAD3C8;
-    font-weight: 600;
-}
-
 #product h3{
     font-size: 40px;
     font-family: 'EB Garamond', serif;

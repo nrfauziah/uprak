@@ -1,17 +1,3 @@
-<!--
-=========================================================
-Light Bootstrap Dashboard - v2.0.1
-=========================================================
-
-Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard
-Copyright 2019 Creative Tim (https://www.creative-tim.com)
-Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE)
-
-Coded by Creative Tim
-
-=========================================================
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
 <?php
     include 'koneksi.php';
 ?>
@@ -62,10 +48,30 @@ The above copyright notice and this permission notice shall be included in all c
                             <p>Table</p>
                         </a>
                     </li>
+
+                    <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Pages
+                    </a>
+                    
+                    <li>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="nc-icon nc-circle-09"></i></div>
+                                Authentication
+                            <div class="sb-sidenav-collapse-arrow"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="formlogin.php">Login</a>
+                                <a class="nav-link" href="formregister.php">Register</a>
+                                <a class="nav-link" href="forgotpw.php">Forgot Password</a>
+                            </nav>
+                        </div>
+                    </li>
                     <li class="nav-item active active-pro">
                         <a class="nav-link active" href="upgrade.php">
                             <i class="nc-icon nc-alien-33"></i>
-                            <p>Upgrade to PRO</p>
+                            <p>Welcome to Chatime</p>
                         </a>
                     </li>
                 </ul>
@@ -130,7 +136,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
+                                <a class="nav-link" href="formlogin.php">
                                     <span class="no-icon">Log out</span>
                                 </a>
                             </li>
@@ -140,149 +146,85 @@ The above copyright notice and this permission notice shall be included in all c
             </nav>
             <!-- End Navbar -->
 
-            <!-- Table-->
-            <a href="forminputproduk.php" class="btn btn-dark mt-5 mb-4" style="margin-left: 20px;">Tambah Data</a>
-    
             <div class="container">
-                
-                <div class="text-center">
-                    <!-- table -->
-                    <table class="table table-bordered text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Gambar</th>
-                                <th scope="col">Modify</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                <ol class="breadcrumb mt-3">
+                    <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Table</li>
+                </ol>
+            </div>
+
+            <!-- Table-->
+            <div class="content">
+                <div class="container" style=" margin-top: -30px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover">
+                                <div class="card-header">
+                                    <a href="forminputproduk.php" class="btn btn-dark" style="float: right; margin-right: 50px;">[+] Data</a>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <!-- table -->
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr class="" >
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Harga</th>
+                                                <th scope="col">Gambar</th>
+                                                <th scope="col">Modify</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
 
-                        <?php
-                            $sql = "SELECT * FROM data_produk";
-                            $query = mysqli_query($connect, $sql);
-                            $no = 1;
-                            $kode = 0;
+                                        <?php
+                                            $sql = "SELECT * FROM data_produk";
+                                            $query = mysqli_query($connect, $sql);
+                                            $no = 1;
+                                            $kode = 0;
 
-                            while ($row = mysqli_fetch_array($query)) {
-                                echo "<tr>";
+                                            while ($row = mysqli_fetch_array($query)) {
+                                                echo "<tr>";
 
-                                echo "<td class='nama'>" . $row['nama'] . "</td>";
-                                echo "<td class='harga'>" . $row['harga'] . "</td>";
+                                                echo "<td class='nama'>" . $row['nama'] . "</td>";
+                                                echo "<td class='harga'>" . $row['harga'] . "</td>";
 
-                                echo "<td>";
-                                echo "<img src='" . $row['gambar'] . "' style='width: 50px; height: 50px;'>";
-                                echo "</td>";
+                                                echo "<td>";
+                                                echo "<img src='" . $row['gambar'] . "' style='width: 40px; height: 50px;'>";
+                                                echo "</td>";
 
-                                echo "<td>";
-                                echo "<a class='btn btn-success' href='formeditproduk.php?nama=" . $row['nama'] . "'>Edit</a> | ";
-                                echo "<a class='btn btn-danger' href='hapus.php?nama=" . $row['nama'] . " '>Hapus</a>";
-                                echo "</td>";
-                                echo "</tr>";
-                            }
-                            ?>
-                            
-                        </tbody>
-                    </table>
+                                                echo "<td>";
+                                                echo "<a class='btn btn-success' href='formeditproduk.php?nama=" . $row['nama'] . "'>Edit</a> | ";
+                                                echo "<a class='btn btn-danger' href='hapus.php?nama=" . $row['nama'] . " '>Hapus</a>";
+                                                echo "</td>";
+                                                echo "</tr>";
+                                            }
+                                            ?>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
     </div>
-    <!--   -->
-    <!-- <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-            <i class="fa fa-cog fa-2x"> </i>
-        </a>
-
-        <ul class="dropdown-menu">
-			<li class="header-title"> Sidebar Style</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Background Image</p>
-                    <label class="switch">
-                        <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
-                    </label>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <p>Filters</p>
-                    <div class="pull-right">
-                        <span class="badge filter badge-black" data-color="black"></span>
-                        <span class="badge filter badge-azure" data-color="azure"></span>
-                        <span class="badge filter badge-green" data-color="green"></span>
-                        <span class="badge filter badge-orange" data-color="orange"></span>
-                        <span class="badge filter badge-red" data-color="red"></span>
-                        <span class="badge filter badge-purple active" data-color="purple"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Sidebar Images</li>
-
-            <li class="active">
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-1.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-3.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="..//assets/img/sidebar-4.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-5.jpg" alt="" />
-                </a>
-            </li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
-                </div>
-            </li>
-
-            <li class="header-title pro-title text-center">Want more components?</li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
-                </div>
-            </li>
-
-            <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
-
-            <li class="button-container">
-				<button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
-                <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
-            </li>
-        </ul>
-    </div>
-</div>
- -->
 </body>
-<!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="../assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!--  Chartist Plugin  -->
-<script src="../assets/js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../assets/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
-<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
-
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="../assets/js/plugins/bootstrap-switch.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!--  Chartist Plugin  -->
+    <script src="../assets/js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+    <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+    <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+    <script src="../assets/js/demo.js"></script>
 </html>
